@@ -63,19 +63,19 @@ mcmc_intervals(exp1fit, pars = exp1coefnames, prob = 0.5) +
   theme_classic() +
   theme(strip.background = element_blank()) +
   scale_y_discrete(
-                   labels = c(
-                     "b_c_cons:c_ung:c_mis" = "Overt Case x   \nGram. Illusion",
-                     "b_c_ung:c_mis" = "Ungrammatical x   \nPlural Attractor\n(Gram. Illusion)",
-                     "b_c_cons:c_ung" = "Overt Case x   \nUngrammatical",
-                     "b_c_cons:c_mis" = "Overt Case x   \nPlural Attractor", 
-                     "b_l_trial" = "Trial No",
-                     "b_c_mis" = "Plural Attractor",
-                     "b_c_cons" = "Overt Case",
-                     "b_c_ung" = "Ungrammatical"
-                   ),
-                   expand = expand_scale(mult = c(.05, .15*1.3), 
-                                         add = c(0, 0)
-                   )) +
+    labels = c(
+      "b_c_cons:c_ung:c_mis" = "Overt Case x   \nGram. Illusion",
+      "b_c_ung:c_mis" = "Ungrammatical x   \nPlural Attractor\n(Gram. Illusion)",
+      "b_c_cons:c_ung" = "Overt Case x   \nUngrammatical",
+      "b_c_cons:c_mis" = "Overt Case x   \nPlural Attractor", 
+      "b_l_trial" = "Trial No",
+      "b_c_mis" = "Plural Attractor",
+      "b_c_cons" = "Overt Case",
+      "b_c_ung" = "Ungrammatical"
+    ),
+    expand = expand_scale(mult = c(.05, .15*1.3), 
+                          add = c(0, 0)
+    )) +
   scale_x_continuous(expand = expand_scale(mult = c(.05, .15*1), 
                                            add = c(0, 0)),
                      breaks = ggplot2::waiver(), 
@@ -303,19 +303,19 @@ mcmc_intervals(exp2bfit, exp2bcoefnames, prob = 0.5) +
   theme_classic() +
   theme(strip.background = element_blank()) +
   scale_y_discrete(
-                   labels = c(
-                     "b_c_form:c_ung:c_mis" = "Nominal x \nGrammaticality Illusion",
-                     "b_c_form:c_mis" = "Nominal x   \nPlural Attractor",
-                     "b_c_form:c_ung" = "Nominal x \nUngrammaticality",
-                     "b_c_ung:c_mis" = "Ungrammaticality x   \nPlural Attractor\n(Grammaticality Illusion)", 
-                     "b_c_form" = "Nominal",
-                     "b_l_trial" = "Trial No",
-                     "b_c_mis" = "Plural Attractor",
-                     "b_c_ung" = "Ungrammaticality" 
-                   ),
-                   expand = expand_scale(mult = c(.05, .15*1.3), 
-                                         add = c(0, 0)
-                   )) +
+    labels = c(
+      "b_c_form:c_ung:c_mis" = "Nominal x \nGrammaticality Illusion",
+      "b_c_form:c_mis" = "Nominal x   \nPlural Attractor",
+      "b_c_form:c_ung" = "Nominal x \nUngrammaticality",
+      "b_c_ung:c_mis" = "Ungrammaticality x   \nPlural Attractor\n(Grammaticality Illusion)", 
+      "b_c_form" = "Nominal",
+      "b_l_trial" = "Trial No",
+      "b_c_mis" = "Plural Attractor",
+      "b_c_ung" = "Ungrammaticality" 
+    ),
+    expand = expand_scale(mult = c(.05, .15*1.3), 
+                          add = c(0, 0)
+    )) +
   scale_x_continuous(expand = expand_scale(mult = c(.05, .15*1.3), 
                                            add = c(0, 0)),
                      breaks = ggplot2::waiver(), 
@@ -398,7 +398,7 @@ smp("exp2Bmodel.png",w=10,h=4)
 
 # Hammerly =======
 hammerlydata$response_yes <- ifelse(grepl("f",hammerlydata$response) , T, 
-                                   ifelse(grepl("j",hammerlydata$response) , F, NA))
+                                    ifelse(grepl("j",hammerlydata$response) , F, NA))
 hammerlydata$subject <- hammerlydata$subj
 hammerly_avg <- list()
 hammerly_avg$resp <- hammerlydata %>% 
@@ -631,7 +631,7 @@ exp4.resp.avg.plot <- exp4.avg %>%
   theme(text=element_text(size=16, family="Helvetica Neue"))+
   theme(strip.background = element_blank()) + 
   theme(legend.position = 'bottom')
-  
+
 
 smp("exp4.png")
 
@@ -781,28 +781,28 @@ ggstatsplot::ggbetweenstats(
   theme_classic() +
   theme(strip.background = element_blank()) +
   theme(text=element_text(size=16, family="Helvetica Neue"), legend.position = "none") +
-scale_x_discrete(
-  labels = c("gram" = "Grammaticality", "ungram" = "Ungrammaticality")
-) +
-scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1))
+  scale_x_discrete(
+    labels = c("gram" = "Grammaticality", "ungram" = "Ungrammaticality")
+  ) +
+  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1))
 
 smp("exp3_bias_our.png", w = 8, h =  5)
 
 A <- 
-ggstatsplot::ggbetweenstats(
-  data = hammerlybias_exp,
-  x = exp,
-  y = bias,
-  xlab = "",
-  ylab = "Estimated Bias",
-  type = "bayes",
-  plot.type = "box",
-  bf.prior =  "ultrawide",
-  results.subtitle = T,
-  centrality.plotting = FALSE,
-  package = "ggsci",
-  palette = "lanonc_lancet"
-) + 
+  ggstatsplot::ggbetweenstats(
+    data = hammerlybias_exp,
+    x = exp,
+    y = bias,
+    xlab = "",
+    ylab = "Estimated Bias",
+    type = "bayes",
+    plot.type = "box",
+    bf.prior =  "ultrawide",
+    results.subtitle = T,
+    centrality.plotting = FALSE,
+    package = "ggsci",
+    palette = "lanonc_lancet"
+  ) + 
   theme_classic() +
   theme(strip.background = element_blank()) +
   theme(text=element_text(size=16, 
@@ -847,3 +847,64 @@ B <-
 A / B 
 
 smp("hammer_bias.png", w = 10, h =  12)
+
+
+A <- 
+  ggstatsplot::ggbetweenstats(
+    data = hammerlybias_exp,
+    x = exp,
+    y = bias,
+    xlab = "",
+    ylab = "Estimated Bias",
+    type = "bayes",
+    plot.type = "box",
+    bf.prior =  "ultrawide",
+    results.subtitle = F,
+    centrality.plotting = FALSE,
+    package = "ggsci",
+    palette = "lanonc_lancet"
+  ) + 
+  theme_classic() +
+  theme(strip.background = element_blank()) +
+  theme(text=element_text(size=16, 
+                          family="Helvetica Neue"), 
+        legend.position = "none") +
+  scale_x_discrete(
+    labels = c("1" = "Experiment 1", "3" = "Experiment 3")
+  ) +
+  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) + ggtitle("Using Experimental Items")
+
+
+
+B <- 
+  ggstatsplot::ggbetweenstats(
+    data = hammerlybias_fill,
+    x = exp,
+    y = bias,
+    xlab = "",
+    ylab = "Estimated Bias",
+    type = "bayes",
+    plot.type = "box",
+    bf.prior =  "ultrawide",
+    results.subtitle = F,
+    centrality.plotting = FALSE,
+    package = "ggsci",
+    palette = "lanonc_lancet"
+  ) + 
+  theme_classic() +
+  theme(strip.background = element_blank()) +
+  theme(text=element_text(size=16, 
+                          family="Helvetica Neue"), 
+        legend.position = "none", 
+        axis.title.y = element_blank(), 
+        axis.text.y = element_blank(), 
+        axis.ticks.y = element_blank()) +
+  scale_x_discrete(
+    labels = c("1" = "Experiment 1", "3" = "Experiment 3")
+  ) +
+  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) +
+  ggtitle("Using Filler Items")
+
+A + B 
+
+smp("defense_hammer_bias.png", w = 8, h =  4)
