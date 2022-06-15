@@ -6,6 +6,13 @@ They include
 - JavaScript code and linguistic materials for the experiments conducted
 - R code for fancy plots prepped for my defense
 
+Our behavioral investigation included:
+
+- How case syncretism affected agreement attraction
+- How form advantage affected agreement attraction and whether participants used form heuristics
+- Response bias calculation and how response bias and agreement attraction interact
+- Whether Turkish agreement attraction effects are due to a possible honorific readings
+
 It will include (in the near future)
 
 - LaTeX code and PDF of my thesis
