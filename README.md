@@ -1,4 +1,4 @@
-These matherials relate to my Master Thesis "Agreement Attraction in Turkish"** that were completed in June 2022.
+These matherials relate to my Master Thesis **"Agreement Attraction in Turkish"** that were completed in June 2022.
 
 They include 
 
