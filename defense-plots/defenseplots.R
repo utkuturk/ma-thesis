@@ -426,11 +426,10 @@ ham_avgs <-
   geom_errorbar(aes(ymin = M - 1.96*SE, 
                     ymax = M + 1.96*SE), 
                 width = 0.1) + 
-  xlab("Experiment") + 
   ylab("Percentage 'acceptable'") + 
   scale_y_continuous(labels=scales::percent) + 
-  scale_x_discrete(name = "Bias", 
-                   labels = c("Towards\nGrammaticality", "Neutralized")) +
+  scale_x_discrete(name = "Bias Manipulation", 
+                   labels = c("No Manipulation", "'Reduced' Bias")) +
   scale_color_lancet(name = "Attractor Number", 
                      labels = c("Plural", "Singular")) + 
   theme_classic() +
@@ -788,123 +787,148 @@ ggstatsplot::ggbetweenstats(
 
 smp("exp3_bias_our.png", w = 8, h =  5)
 
-A <- 
-  ggstatsplot::ggbetweenstats(
-    data = hammerlybias_exp,
-    x = exp,
-    y = bias,
-    xlab = "",
-    ylab = "Estimated Bias",
-    type = "bayes",
-    plot.type = "box",
-    bf.prior =  "ultrawide",
-    results.subtitle = T,
-    centrality.plotting = FALSE,
-    package = "ggsci",
-    palette = "lanonc_lancet"
-  ) + 
+# A <- 
+#   ggstatsplot::ggbetweenstats(
+#     data = hammerlybias_exp,
+#     x = exp,
+#     y = bias,
+#     xlab = "",
+#     ylab = "Estimated Bias",
+#     type = "bayes",
+#     plot.type = "box",
+#     bf.prior =  "ultrawide",
+#     results.subtitle = T,
+#     centrality.plotting = FALSE,
+#     package = "ggsci",
+#     palette = "lanonc_lancet"
+#   ) + 
+#   theme_classic() +
+#   theme(strip.background = element_blank()) +
+#   theme(text=element_text(size=16, 
+#                           family="Helvetica Neue"), 
+#         legend.position = "none", 
+#         axis.title.x = element_blank(), 
+#         axis.text.x = element_blank(), 
+#         axis.ticks.x = element_blank()) +
+#   scale_x_discrete(
+#     labels = c("1" = "Experiment 1", "3" = "Experiment 3")
+#   ) +
+#   scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) + ggtitle("Bias Calc. with Experimental Items")
+
+
+
+# B <- 
+#   ggstatsplot::ggbetweenstats(
+#     data = hammerlybias_fill,
+#     x = exp,
+#     y = bias,
+#     xlab = "",
+#     ylab = "Estimated Bias",
+#     type = "bayes",
+#     plot.type = "box",
+#     bf.prior =  "ultrawide",
+#     results.subtitle = T,
+#     centrality.plotting = FALSE,
+#     package = "ggsci",
+#     palette = "lanonc_lancet"
+#   ) + 
+#   theme_classic() +
+#   theme(strip.background = element_blank()) +
+#   theme(text=element_text(size=16, 
+#                           family="Helvetica Neue"), 
+#         legend.position = "none") +
+#   scale_x_discrete(
+#     labels = c("1" = "Experiment 1", "3" = "Experiment 3")
+#   ) +
+#   scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) +
+#   ggtitle("Bias Calc. with Filler Items")
+
+# A / B 
+
+# smp("hammer_bias.png", w = 10, h =  12)
+
+
+# A <- 
+#   ggstatsplot::ggbetweenstats(
+#     data = hammerlybias_exp,
+#     x = exp,
+#     y = bias,
+#     xlab = "",
+#     ylab = "Estimated Bias",
+#     type = "bayes",
+#     plot.type = "box",
+#     bf.prior =  "ultrawide",
+#     results.subtitle = F,
+#     centrality.plotting = FALSE,
+#     package = "ggsci",
+#     palette = "lanonc_lancet"
+#   ) + 
+#   theme_classic() +
+#   theme(strip.background = element_blank()) +
+#   theme(text=element_text(size=16, 
+#                           family="Helvetica Neue"), 
+#         legend.position = "none") +
+#   scale_x_discrete(
+#     labels = c("1" = "Experiment 1", "3" = "Experiment 3")
+#   ) +
+#   scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) + ggtitle("Using Experimental Items")
+
+
+
+# B <- 
+#   ggstatsplot::ggbetweenstats(
+#     data = hammerlybias_fill,
+#     x = exp,
+#     y = bias,
+#     xlab = "",
+#     ylab = "Estimated Bias",
+#     type = "bayes",
+#     plot.type = "box",
+#     bf.prior =  "ultrawide",
+#     results.subtitle = F,
+#     centrality.plotting = FALSE,
+#     package = "ggsci",
+#     palette = "lanonc_lancet"
+#   ) + 
+#   theme_classic() +
+#   theme(strip.background = element_blank()) +
+#   theme(text=element_text(size=16, 
+#                           family="Helvetica Neue"), 
+#         legend.position = "none", 
+#         axis.title.y = element_blank(), 
+#         axis.text.y = element_blank(), 
+#         axis.ticks.y = element_blank()) +
+#   scale_x_discrete(
+#     labels = c("1" = "Experiment 1", "3" = "Experiment 3")
+#   ) +
+#   scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) +
+#   ggtitle("Using Filler Items")
+
+# A + B 
+
+# smp("defense_hammer_bias.png", w = 8, h =  4)
+
+hammerlybias_exp$calc = "exp"
+hammerlybias_exp$subj %<>% as.factor()
+hammerlybias_fill$calc = "fill"
+hammerlybias = rbind(hammerlybias_exp, hammerlybias_fill)
+
+h_b_avgs = Rmisc::summarySE(hammerlybias, measurevar = "bias", groupvars = c("exp", "calc"))
+
+library(ggsci)
+
+ggplot(h_b_avgs, aes(x=exp, y=bias, color = exp)) + 
+    geom_errorbar(aes(ymin=bias-ci, ymax=bias+ci), width=.3) +
+    geom_line() +
+    geom_point() + 
+    facet_wrap(~calc, labeller = labeller(calc = c(exp = "Using Experimental Items", fill = "Using Fillers"))) +
+    ylab("Yes←             Estimated Bias              →No") + 
+  scale_x_discrete(name = "Bias Manipulation", 
+                   labels = c("No\nManipulation", "'Reduced'\nBias")) +
+  scale_color_lancet() + 
   theme_classic() +
-  theme(strip.background = element_blank()) +
-  theme(text=element_text(size=16, 
-                          family="Helvetica Neue"), 
-        legend.position = "none", 
-        axis.title.x = element_blank(), 
-        axis.text.x = element_blank(), 
-        axis.ticks.x = element_blank()) +
-  scale_x_discrete(
-    labels = c("1" = "Experiment 1", "3" = "Experiment 3")
-  ) +
-  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) + ggtitle("Bias Calc. with Experimental Items")
+  theme(text=element_text(size=22, family="Helvetica Neue"))+
+  theme(strip.background = element_blank()) + 
+  theme(legend.position = 'none')
 
-
-
-B <- 
-  ggstatsplot::ggbetweenstats(
-    data = hammerlybias_fill,
-    x = exp,
-    y = bias,
-    xlab = "",
-    ylab = "Estimated Bias",
-    type = "bayes",
-    plot.type = "box",
-    bf.prior =  "ultrawide",
-    results.subtitle = T,
-    centrality.plotting = FALSE,
-    package = "ggsci",
-    palette = "lanonc_lancet"
-  ) + 
-  theme_classic() +
-  theme(strip.background = element_blank()) +
-  theme(text=element_text(size=16, 
-                          family="Helvetica Neue"), 
-        legend.position = "none") +
-  scale_x_discrete(
-    labels = c("1" = "Experiment 1", "3" = "Experiment 3")
-  ) +
-  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) +
-  ggtitle("Bias Calc. with Filler Items")
-
-A / B 
-
-smp("hammer_bias.png", w = 10, h =  12)
-
-
-A <- 
-  ggstatsplot::ggbetweenstats(
-    data = hammerlybias_exp,
-    x = exp,
-    y = bias,
-    xlab = "",
-    ylab = "Estimated Bias",
-    type = "bayes",
-    plot.type = "box",
-    bf.prior =  "ultrawide",
-    results.subtitle = F,
-    centrality.plotting = FALSE,
-    package = "ggsci",
-    palette = "lanonc_lancet"
-  ) + 
-  theme_classic() +
-  theme(strip.background = element_blank()) +
-  theme(text=element_text(size=16, 
-                          family="Helvetica Neue"), 
-        legend.position = "none") +
-  scale_x_discrete(
-    labels = c("1" = "Experiment 1", "3" = "Experiment 3")
-  ) +
-  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) + ggtitle("Using Experimental Items")
-
-
-
-B <- 
-  ggstatsplot::ggbetweenstats(
-    data = hammerlybias_fill,
-    x = exp,
-    y = bias,
-    xlab = "",
-    ylab = "Estimated Bias",
-    type = "bayes",
-    plot.type = "box",
-    bf.prior =  "ultrawide",
-    results.subtitle = F,
-    centrality.plotting = FALSE,
-    package = "ggsci",
-    palette = "lanonc_lancet"
-  ) + 
-  theme_classic() +
-  theme(strip.background = element_blank()) +
-  theme(text=element_text(size=16, 
-                          family="Helvetica Neue"), 
-        legend.position = "none", 
-        axis.title.y = element_blank(), 
-        axis.text.y = element_blank(), 
-        axis.ticks.y = element_blank()) +
-  scale_x_discrete(
-    labels = c("1" = "Experiment 1", "3" = "Experiment 3")
-  ) +
-  scale_y_continuous(breaks=seq(-1,1,.5), limits = c(-1,1)) +
-  ggtitle("Using Filler Items")
-
-A + B 
-
-smp("defense_hammer_bias.png", w = 8, h =  4)
+smp("bias_avgs.png", w=8, h=7)
