@@ -1,0 +1,332 @@
+% font
+
+\usepackage[T1]{fontenc}
+\usepackage[zerostyle=d]{newtxtt}
+% Turkish characters
+\usepackage[utf8]{inputenc}
+%\usepackage{hyperref}
+% \hypersetup{%
+%     colorlinks,
+%     citecolor=black,
+%     filecolor=black,
+%     linkcolor=black,
+%     urlcolor=black
+% }
+
+% margins
+%\usepackage[margin=1in]{geometry}
+\usepackage{geometry}
+\geometry{paper=a4paper, left=4cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+% easy reading
+% \geometry{paper=a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm}
+% line spacing
+\usepackage{setspace}
+\doublespacing
+% \singlespacing
+
+
+
+% remove hyphenation, fix margin violation.
+\usepackage{hyphenat}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+
+% math symbols
+\usepackage{amsmath}
+
+% include graphics
+\usepackage{graphicx}
+
+% some float envrionments
+% \usepackage{nonfloat}
+
+% including code snippets
+\usepackage{listings}
+
+% multiple columns
+\usepackage{multicol}
+%prevent empty space before multicols, if they are on page edges weird stuff can happen please check your multicol environments in the pdf.
+\setlength\multicolsep{0pt}
+
+% matrices
+\usepackage{avm}
+
+% optimality theory tableaus
+\usepackage{ot-tableau}
+
+% table environment
+\usepackage{tabularx}
+\usepackage{multirow}
+
+% Internetional Phonetic Alphabet, phonological rules.
+\usepackage{tipa}
+\usepackage{phonrule}
+
+% framing
+\usepackage{framed}
+
+% color
+\usepackage{color}
+
+
+% \sout function and some others, without the option it messes up end-text citation
+\usepackage[normalem]{ulem}
+
+% sout in math mode
+\usepackage{cancel}
+
+% for footnotes in tables
+\usepackage{tablefootnote}
+
+% for month and year info
+\usepackage{datetime}
+
+% title formatting
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont}{\thesubsubsection}{1em}{}
+
+\titleformat{\chapter}[display]
+{\normalfont\center}
+%{\MakeUppercase{\chaptertitlename} \thechapter}{0pt}{}
+{{\chaptertitlename} \thechapter}{0pt}{}
+
+\titlespacing*{\chapter}{0pt}{-50pt}{2em}
+\titlespacing*{\section}{0pt}{2em}{0em}
+\titlespacing*{\subsection}{0pt}{2em}{0em}
+\titlespacing*{\subsubsection}{0pt}{2em}{0em}
+
+% makes subsubsection numbering visible in section heading.
+\setcounter{secnumdepth}{3}
+
+\renewcommand{\chaptername}{CHAPTER}
+\renewcommand{\appendixname}{APPENDIX}
+% preamble pages
+\usepackage{titletoc}
+
+%\titlecontents{chapter}[0pt]{}{\MakeUppercase{\chaptertitlename\space\space\thecontentslabel:\space\space}\MakeUppercase}{}{\dotfill\contentspage}
+
+% edit table of content look
+\titlecontents{chapter}[0pt]{}{{\chaptertitlename\space\thecontentslabel:\space}}{}{\dotfill\contentspage}
+
+\titlecontents{section}[2.3em]{}{\thecontentslabel\space\space}{}{\dotfill\contentspage}
+
+\titlecontents{subsection}[4.6em]{}{\thecontentslabel\space}{}{\dotfill\contentspage}
+
+\titlecontents{figure}[0pt]{\hangindent 1.5em}{\figurename\space\thecontentslabel.\space}{}{\dotfill\contentspage}
+
+\titlecontents{table}[0pt]{\hangindent 1.5em}{\tablename\space\thecontentslabel.\space}{}{\dotfill\contentspage}
+
+
+% table of content depth 1 > CHAPTERs and Sections. 2 > + subsections
+\setcounter{tocdepth}{1}
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+%% R graphics and environment settings %%
+\usepackage{alltt}
+
+% knitr settings
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\renewcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\renewcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\renewcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\renewcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\renewcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\renewcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\renewcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\renewcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\renewcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\makeatletter
+\renewenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\renewenvironment{knitrout}{}{}
+%% end R environment %%
+
+% for word count
+% \usepackage{verbatim}
+% \immediate\write18{texcount -inc -incbib 
+% -sum main.tex > /tmp/wordcount.tex}
+% \newcommand\wordcount{
+% \verbatiminput{/tmp/wordcount.tex}}
+
+
+% hinder widows and orphans
+\usepackage[all]{nowidow}
+
+% misc
+\usepackage{etoolbox}
+
+\newlength\mystoreparindent
+\newenvironment{myparindent}[1]{%
+\setlength{\mystoreparindent}{\the\parindent}
+\setlength{\parindent}{#1}
+}{%
+\setlength{\parindent}{\mystoreparindent}
+}
+
+% add double spacing before floating environments
+\setlength{\intextsep}{22pt plus 2pt minus 0pt}
+
+% text positioning
+\usepackage[document]{ragged2e}
+\setlength\RaggedRightParindent{1.27cm}
+
+% configure figure and table captions
+\usepackage[labelsep=period]{caption}
+%\captionsetup{parindent=0pt,justification=raggedright,singlelinecheck=false}
+\captionsetup{justification=raggedright}
+%\captionsetup{parindent=0pt}
+\captionsetup{singlelinecheck=false}
+\captionsetup{belowskip=0pt}
+% table caption vertical alignment
+\captionsetup[table]{aboveskip=-0.2em}
+%\captionsetup[figure]{aboveskip=-0.1em}
+
+% align figure and table captions to the left margin
+\AtBeginEnvironment{figure}{\setlength{\RaggedRightParindent}{0em}}
+\AtBeginEnvironment{table}{\setlength{\RaggedRightParindent}{0em}}
+
+% add vertical distance before and after tables and figures
+%\AtBeginEnvironment{figure}{\addvspace{5mm}}\AtEndEnvironment{figure}{\addvspace{5mm}}
+%\AtBeginEnvironment{table}{\addvspace{5mm}}\AtEndEnvironment{figure}{\addvspace{5mm}}
+
+%\AtBeginEnvironment{figure}{${}$\\*}
+%%% KEEP THESE PACKAGES AT THE VERY END OF YOUR STY FILE IF YOU WANT TO HAVE ADDITIONAL PACKAGES %%%
+% citation
+\usepackage{natbib}
+
+%% this piece fixes semicolon comma choices for cite, citet, and citep %%
+\makeatletter
+\newcommand\bibstyle@comma{\bibpunct(),a,,}
+\newcommand\bibstyle@semicolon{\bibpunct();a,,}
+\makeatother
+\pretocmd\cite{\citestyle{comma}}\relax\relax
+\pretocmd\citet{\citestyle{comma}}\relax\relax
+\pretocmd\citep{\citestyle{semicolon}}\relax\relax
+%%end fix%%
+
+
+% leipzig glossing
+\usepackage[block]{leipzig}
+% input glosses
+\input{frontmatter/glossaries.tex}
+
+\usepackage{enumitem}
+
+% numbered linguistics examples with glossing
+\usepackage{langsci-gb4e}
+\exewidth{(22222222)} 
+\makeatletter
+% \apptocmd{\@exe}{\setstretch{1.25}}{}{}
+\apptocmd{\@exe}{\singlespacing}{}{}
+\makeatother
+% makes language examples appear in italic
+\let\eachwordone=\itshape
+\let\eachwordtwo=\footnotesize
+
+% for drawing trees 
+\usepackage[linguistics, external]{forest}
+\forestset{sn edges/.style={for tree={parent anchor=south, child anchor=north, s sep=10mm, inner sep=0mm}}}
+\forestset{
+ned/.style={%
+    for tree={calign=fixed edge angles},
+    delay={%
+      where content={}{%
+        shape=coordinate,
+        for nodewalk={%
+          Nodewalk={%
+            on invalid=fake,
+          }{%
+            parent,
+          }{%
+            for children={anchor=north},
+          }
+        }{},
+      }{},
+    },
+},
+fned/.style={
+        delay={where content={}{shape=coordinate,
+              for siblings={anchor=north}}{}},
+		for tree={s sep=4mm}},
+% multinomial processing trees
+mpt/.style={%
+  for tree = {
+  % nodes
+      draw, 
+      align=center,
+      minimum height=5ex,
+      minimum width=6em,
+      font=\linespread{0.84}\selectfont,
+  % tree
+      grow'=0,
+      parent anchor=east,
+      child  anchor=west,
+      s sep = 5mm,    
+      l sep = 10mm, 
+  % edge
+      edge = {semithick},
+  % level styles
+  if level = 0{}{rounded corners=2ex},
+  where n children=0{tier=level, sharp corners}{calign=edge midpoint},
+      }% end for tree
+},
+% edge labels
+EL/.style={edge label={node [pos=0.5, fill=white,
+                              font=\scriptsize\sffamily,
+                              inner sep=2pt] {$#1$}}
+              },
+}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\tikzset{every tree node/.style={align=center, anchor=north}}
+\usetikzlibrary{positioning}
+
+
+% externalizing figures, helps with compiling
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikzz/]
+
+% \newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+% \newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+% \let\oldthebibliography\thebibliography
+% \renewcommand\thebibliography[1]{%
+%   \oldthebibliography{#1}%
+%   \setlength{\parskip}{\bibitemsep}%
+%   \setlength{\itemsep}{\bibparskip}%
+% }
+% \setlength{\bibitemsep}{0.7\baselineskip}
+
+% delete empty pages
+\usepackage{afterpage}
+
+\usepackage{listings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

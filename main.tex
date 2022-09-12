@@ -1,0 +1,202 @@
+\documentclass[12pt, a4paper, oneside]{report}
+
+\usepackage[]{graphicx}
+\usepackage[]{color}
+
+
+%\setmainfont{Times New Roman}
+%\usepackage{newtxtext,newtxmath} %1
+\usepackage{times} %2
+%default %3
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\makeatletter
+\@ifundefined{AddToHook}{}{\AddToHook{package/xcolor/after}{\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}}}
+\makeatother
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\makeatletter
+\@ifundefined{AddToHook}{}{\AddToHook{package/xcolor/after}{
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+}}
+\makeatother
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+% 
+\usepackage{sbema}
+
+
+\newcommand{\authname}{Utku T\"{u}rk} 
+\newcommand{\ttitle}{Agreement Attraction in Turkish}
+\newcommand{\ttitletr}{T\"urk\c{c}ede Uyum Benze\c{s}mesi}
+\newcommand{\univname}{Bo\u{g}azi\c{c}i University}
+\newcommand{\degname}{Master of Arts}
+\newcommand{\deptname}{Linguistics}
+\newcommand{\supname}{Assist. Prof. Pavel Loga\v{c}ev}
+\newcommand{\juryfname}{Assist. Prof. \"Umit Atlamaz}
+\newcommand{\jurysname}{Assist. Prof. Serkan \c{S}ener}
+%repeat the same in capitals
+\newcommand{\authnamecaps}{UTKU T\"URK} 
+\newcommand{\ttitlecaps}{AGREEMENT ATTRACTION IN TURKISH}
+\newcommand{\ttitletrcaps}{T\"URK\c{C}EDE UYUM BENZE\c{S}MES{\.I}}
+\newcommand{\univnamecaps}{BO\u{G}AZ{\.I}\c{C}{\.I} UNIVERSITY}
+\newcommand{\degnamecaps}{MASTER OF ARTS}
+\newcommand{\deptnamecaps}{LINGUISTICS}
+
+% separate author name and year for possessive
+\newcommand{\cites}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+
+% placeholder for missing citations
+\newcommand{\CITEMISS}[0]{{\color{red} (CITE!)}}
+\def\url#1{\expandafter\string\csname #1\endcsname}
+
+% fix in-text and citations
+\newcommand{\citeand}[1]{{\renewcommand\&{and}\citet{#1}}}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+
+
+
+\begin{document}
+
+% frontmatter
+\pagenumbering{gobble}
+\input{frontmatter/title-page.tex}
+
+\input{frontmatter/0-approval-page.tex}
+
+\input{frontmatter/1-declarationoforiginality.tex}
+
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{4}
+
+\input{frontmatter/2-abstract.tex}
+
+\input{frontmatter/3-acknowledgement}
+
+% moved renew commands for some ToC settings out of sty to here
+\renewcommand\contentsname{TABLE OF CONTENTS}
+\renewcommand\listfigurename{LIST OF FIGURES}
+%\renewcommand\listtablename{LIST OF TABLES}
+{\setstretch{1.7}\tableofcontents}
+
+
+\begingroup
+\renewcommand{\addvspace}[1]{}
+\printglossary[title=\MakeUppercase{abbreviations}, style=block, nonumberlist]
+%\listoftables
+{\setstretch{1.7}\listoffigures}
+\endgroup
+\clearpage
+
+
+% main body
+\pagenumbering{arabic} 
+
+% YOUR CHAPTERS GO HERE
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapters/ch1.tex}
+\input{chapters/ch2.tex}
+\input{chapters/ch3.tex}
+\input{chapters/ch4.tex}
+\input{chapters/ch5.tex}
+\input{chapters/ch6.tex}
+\input{chapters/ch7.tex}
+
+
+\appendix
+% changing chapter heading for table of content
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+\titlecontents{chapter}[0pt]{}{{APPENDIX
+\thecontentslabel:\space}}{}{\dotfill\contentspage}
+
+
+\setlength\RaggedRightParindent{0cm}
+% PUT YOUR APPENDICIES HERE BY CALLING INPUT FUNCTION %
+
+% \newpage
+\input{appendices/ap-a.tex}
+\input{appendices/ap-b.tex}
+\input{appendices/ap-c.tex}
+\input{appendices/ap-d.tex}
+\input{appendices/ap-e.tex}
+\input{appendices/ap-f.tex}
+\input{appendices/ap-g.tex}
+
+% \input{endmatter/appendicies/appendixd}
+
+\newpage
+
+\setlength\RaggedRightParindent{1.27cm}
+
+
+\newpage
+
+% for printing references 
+% one time references % bunlarin full hallerini yazmak gerekiyordu. textte duz yazdim, sonra da burada no cite ile ekledim.
+\nocite{AllenEtAl2003,AcunaEtAl2014,HammerlyEtAl2019, LagoEtAl2021,BaayenEtAl97,SchreuderBaayen97,RastleDavis2008,BockEtAl2001,BrehmEtAl2020,Haspelmath2014,ComrieEtAl2010,FayolEtAl94,QuirkEtAl1972,FodorEtAl74,HatsuikerEtAl2001,FranckEtAl2006,Pfau2003,FranckEtAl2010,R-bayesplot,GazdarEtAl85,Chomsky93,Kaan2002,KahnemanEtAl82,GigerenzerSelten2001,LorimorEtAl2008,OzgeEtAl2019,Yamashita97, Kim99, LogacevVasishth2012, BabyGibson99,PatsonEtAl2009,Staub:2007,QuirkEtAl1972,RotelloEtAl2015,RyskinEtAl2021,SchlueterEtAl2019,VillataEtAl2018,SmithEtAl2018, SmithEtAl2021,VanHertenEtAl2006,VasishthEtAl2018,Eberhard1999,KurtzmanMacDonald1993,HumphreysBock2005,ViglioccoEtAl95,Eberhard97,BetancourtEtAl2020}
+%\nocite{ChowEtAl2018,MacDonaldEtAl94,SturtEtAl2004,ViglioccoEtAl96} % cikarilanlar because too much work 
+\newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{\detokenize{#1}}}
+\singlespacing
+\addcontentsline{toc}{chapter}{REFERENCES}
+\renewcommand\bibname{REFERENCES}
+\begingroup
+\raggedright
+\setlength\bibhang{0.5in}
+\bibliographystyle{sbe_ma}
+\bibliography{references}
+\endgroup
+% \wordcount
+
+\end{document}
